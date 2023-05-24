@@ -1,8 +1,9 @@
-import axios from 'axios'
+import axios from 'axios';
+import { TCard, TCoin } from '@/shared/types';
 
 const API_HOST = 'https://api.coingecko.com/api/v3';
 
-export const getCoins = async (currency: string) => {
+export const getCoins = async (currency: string): Promise<Array<TCard>> => {
   try {
     const { data } = await axios.get(`${API_HOST}/coins/markets`, {
       params: {
@@ -15,16 +16,16 @@ export const getCoins = async (currency: string) => {
 
     return data;
   } catch (err) {
-    console.log(`ERROR: ${err}`)
+    return Promise.reject(err)
   }
 }
 
-export const getCoin = async (id?: string) => {
+export const getCoin = async (id?: string): Promise<TCoin> => {
   try {
     const { data } = await axios.get(`${API_HOST}/coins/${id}`);
 
     return data;
   } catch (err) {
-    console.log(`ERROR: ${err}`);
+    return Promise.reject(err)
   }
 }
