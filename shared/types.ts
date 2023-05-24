@@ -6,3 +6,23 @@ export type TCard = {
     low_24h: number;
     image: string;
 }
+
+export type TCoin = {
+  id: string;
+  name: string;
+  market_data: {
+    ath: {
+      usd: number
+    },
+    current_price: {
+      usd: number
+    },
+    market_cap: {
+      usd: number
+    }
+  };
+  market_cap_rank: number;
+  image: {
+    small: string
+  };
+}
